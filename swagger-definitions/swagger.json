@@ -9,7 +9,7 @@
     "schemes": [
         "http"
     ],
-    "basePath": "/v1",
+    "basePath": "/api/v1",
     "produces": [
         "application/json"
     ],
@@ -32,12 +32,7 @@
                 "summary": "Return a list of users",
                 "operationId": "getUsers",
                 "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                    }
+                   
                 ],
                 "responses": {
                     "200": {
@@ -64,12 +59,7 @@
                 "summary": "Creates a new user.",
                 "operationId": "addUsers",
                 "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                    },
+                  
                     {
                         "in": "body",
                         "required": true,
@@ -259,26 +249,67 @@
         "User": {
             "type": "object",
             "properties": {
+                "f_name": {
+                    "type": "string",
+                    "description": "User email.",
+                    "required":true
+                },
+                "l_name": {
+                    "type": "string",
+                    "description": "User name.",
+                    "required":true
+                },
                 "email": {
                     "type": "string",
-                    "description": "KIO user email."
+                    "description": "Must be unique",
+                    "required":true
                 },
-                "name": {
-                    "type": "string",
-                    "description": "KIO user name."
+                "birth_date": {
+                    "type": "date",
+                    "format": "date",
+                    "description": "User Birthday.",
+                    "required":true
                 },
-                "position": {
+                "n_user": {
                     "type": "string",
-                    "description": "KIO user position."
+                    "description": "KIO user avatar.",
+                    "required":true
                 },
-                "location": {
-                    "type": "string",
-                    "description": "KIO user position."
+                "tel": {
+                    "type": "number",
+                    "description": "Cellphone of",
+                    "required":true
                 },
-                "avatar": {
-                    "type": "string",
-                    "description": "KIO user avatar."
+                "devices":{
+                    "schema":{
+                        "type":"array",
+                        "items":{
+                            "marca": {
+                                "type": "string",
+                                "description": "KIO user avatar.",
+                                "required":true
+                            },
+                            "modelo": {
+                                "type": "string",
+                                "description": "KIO user avatar.",
+                                "required":true
+                            },
+                            "n_serie": {
+                                "type": "string",
+                                "description": "KIO device numero de serie.",
+                                "required":true
+                            },
+                            "f_assig": {
+                                "type": "date",
+                                "format":"date",
+                                "description": "KIO device  .",
+                                "required":true
+                            }
+                        }
+                        
+                    }
                 }
+
             }
         },
         "Publication": {

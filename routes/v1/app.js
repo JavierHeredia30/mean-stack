@@ -22,5 +22,6 @@ router.get('/', function(req, res, next) {
 
 //modules
 require('./users')(router);
+require('./location')(router);
 
 module.exports = router;

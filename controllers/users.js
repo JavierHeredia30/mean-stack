@@ -142,4 +142,37 @@ exports.addUserDevice = function(req,res,next){
 		}
 	});
 
+
+
+}
+
+exports.deleteUserDevice= function(req,res,next){
+	
+	User.findByIdAndUpdate( req.params.id_usuario,{$pull: {devices:{_id:req.params.id}}},{new:true }).exec((err, user) => {
+		if(err){
+			next({status: 200, message: 'Error deleting device.'});
+		} else {
+			if(user)
+				res.send(user);
+			else{
+				next({status: 200, message: 'Error deleting device'});
+			}
+		}
+	});
+}
+
+exports.updateUserDevice= function(req,res,next){
+	User.update({'devices._id':req.params.id},{'$set': {
+		'devices.$.marca': 'Apple'
+	}}).exec((err, user) => {
+		if(err){
+			next({status: 200, message: 'Error updating device.'});
+		} else {
+			if(user)
+				res.send(user);
+			else{
+				next({status: 200, message: 'Error uppdating device'});
+			}
+		}
+	});
 }
